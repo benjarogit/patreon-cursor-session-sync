@@ -1,22 +1,21 @@
 <div align="center">
 
-<img src="docs/logo.png" alt="patreon-cursor-session-sync" width="160">
+<img src="docs/logo.png" alt="SessionHop" width="148">
 
-# patreon-cursor-session-sync
+# SessionHop
 
-### Patreon in Cursor — direkt eingeloggt.
+### Patreon-Session in Cursor — ein Hop, fertig.
 
-Session aus Firefox, Chrome, Vivaldi oder Tor Browser in den Cursor-Browser übernehmen.  
-Ein Befehl. Keine kaputten Google-Popups.
+Login aus Firefox, Chrome, Vivaldi oder Tor Browser übernehmen — ein Befehl, keine kaputten Google-Popups.
 
-**Deutsch** · [English](README.md)
+<sub><code>patreon-cursor-session-sync</code> auf GitHub · <strong>Deutsch</strong> · <a href="README.md">English</a></sub>
 
 <br>
 
-[![License: MIT](https://img.shields.io/badge/Lizenz-MIT-2d2d2d?style=for-the-badge&labelColor=F96854)](LICENSE)
-[![Linux](https://img.shields.io/badge/nur-Linux-2d2d2d?style=for-the-badge&labelColor=555)]()
-[![Python](https://img.shields.io/badge/Python-3.9+-2d2d2d?style=for-the-badge&logo=python&logoColor=white&labelColor=3776AB)]()
-[![stdlib](https://img.shields.io/badge/Abhängigkeiten-nur_stdlib-2d2d2d?style=for-the-badge&labelColor=2ea043)]()
+[![License: MIT](https://img.shields.io/badge/Lizenz-MIT-0d1117?style=for-the-badge&labelColor=F96854)](LICENSE)
+[![Linux](https://img.shields.io/badge/nur-Linux-0d1117?style=for-the-badge&labelColor=30363d)]()
+[![Python](https://img.shields.io/badge/Python-3.9+-0d1117?style=for-the-badge&logo=python&logoColor=white&labelColor=3776AB)]()
+[![stdlib](https://img.shields.io/badge/Abhängigkeiten-nur_stdlib-0d1117?style=for-the-badge&labelColor=238636)]()
 
 <br>
 
@@ -52,9 +51,9 @@ Ein Befehl. Keine kaputten Google-Popups.
 </tr>
 </table>
 
-Dieses Tool **schließt die Lücke** — es kopiert `session_id` und zugehörige Cookies nach Cursor.
+**SessionHop** kopiert `session_id` und Cookies in den Cursor-Browser — Patreon öffnet sich **direkt eingeloggt**.
 
-> Inoffizielles Hilfswerkzeug · nur Linux · nur Patreon · kein OAuth-Fix, sondern Session-Transfer.
+> Inoffiziell · nur Linux · nur Patreon · Session-Transfer, kein OAuth-Fix.
 
 ---
 
@@ -63,22 +62,21 @@ Dieses Tool **schließt die Lücke** — es kopiert `session_id` und zugehörige
 ```bash
 git clone https://github.com/benjarogit/patreon-cursor-session-sync.git
 cd patreon-cursor-session-sync
-chmod +x sync-patreon-cursor-session.py
+chmod +x sessionhop.py
 
 # 1. In Firefox oder Chrome bei Patreon einloggen
-# 2. Sync starten
-./sync-patreon-cursor-session.py
+# 2. Session hoppen
+./sessionhop.py
 
-# 3. In Cursor öffnen
-# → https://www.patreon.com/home
+# 3. In Cursor → https://www.patreon.com/home
 ```
 
 <details>
-<summary><strong>Optional: als <code>patreon-cursor-sync</code> installieren</strong></summary>
+<summary><strong>Als <code>sessionhop</code>-Befehl installieren</strong></summary>
 
 ```bash
-ln -s "$(pwd)/sync-patreon-cursor-session.py" ~/.local/bin/patreon-cursor-sync
-patreon-cursor-sync
+ln -s "$(pwd)/sessionhop.py" ~/.local/bin/sessionhop
+sessionhop
 ```
 
 </details>
@@ -89,12 +87,12 @@ patreon-cursor-sync
 
 | | |
 |:---|:---|
-| `./sync-patreon-cursor-session.py` | Bestes Profil automatisch wählen |
-| `./sync-patreon-cursor-session.py --list` | Alle erkannten Profile |
-| `./sync-patreon-cursor-session.py --from firefox` | Firefox |
-| `./sync-patreon-cursor-session.py --from vivaldi` | Vivaldi |
-| `./sync-patreon-cursor-session.py --from tor-browser` | Tor Browser |
-| `./sync-patreon-cursor-session.py --from chrome --profile "Profile 1"` | Bestimmtes Profil |
+| `./sessionhop.py` | Bestes Profil automatisch |
+| `./sessionhop.py --list` | Alle erkannten Profile |
+| `./sessionhop.py --from firefox` | Firefox |
+| `./sessionhop.py --from vivaldi` | Vivaldi |
+| `./sessionhop.py --from tor-browser` | Tor Browser |
+| `./sessionhop.py --from chrome --profile "Profile 1"` | Bestimmtes Profil |
 
 Noch ausgeloggt? **Developer → Reload Window**, dann Patreon erneut öffnen.
 
@@ -132,7 +130,7 @@ Noch ausgeloggt? **Developer → Reload Window**, dann Patreon erneut öffnen.
 | Brave | `~/.config/BraveSoftware/Brave-Browser/` |
 | Edge | `~/.config/microsoft-edge/` |
 
-Verschlüsselte Cookies (Keyring)? Quellbrowser schließen oder Firefox nutzen.
+Verschlüsselte Cookies? Quellbrowser schließen oder Firefox nutzen.
 
 </details>
 
@@ -141,7 +139,7 @@ Verschlüsselte Cookies (Keyring)? Quellbrowser schließen oder Firefox nutzen.
 
 <br>
 
-Safari (macOS, eigenes Format) · Windows / macOS Pfade
+Safari (macOS) · Windows / macOS Pfade
 
 </details>
 
@@ -152,21 +150,21 @@ Safari (macOS, eigenes Format) · Windows / macOS Pfade
 ```
    ┌─────────────┐                              ┌─────────────┐
    │  Browser    │   session_id + Cookies       │   Cursor    │
-   │  (Quelle)   │ ─────────────────────────► │   Browser   │
+   │  (Quelle)   │ ─────── SessionHop ────────► │   Browser   │
    └─────────────┘   SQLite · SIGHUP reload   └─────────────┘
 ```
 
 1. Patreon-Cookies aus Quellprofil lesen  
 2. Schreiben nach `~/.config/Cursor/Partitions/cursor-browser/Cookies`  
-3. Cookie-Cache in Cursor neu laden  
-4. Backup der alten DB (mit Zeitstempel)  
+3. Cookie-Cache neu laden  
+4. Backup der alten DB  
 
 ---
 
 ## Grenzen
 
-- Session endet bei Logout — erneut syncen  
-- Nur Patreon (nicht Ko-fi, GitHub, …)  
+- Session endet bei Logout — erneut hoppen  
+- Nur Patreon  
 - Cookie-DB kann bei laufendem Browser gesperrt sein  
 
 ---
@@ -177,6 +175,6 @@ Safari (macOS, eigenes Format) · Windows / macOS Pfade
 
 **[MIT-Lizenz](LICENSE)** · [benjarogit](https://github.com/benjarogit)
 
-<sub>Inoffizielles Tool — nicht mit Patreon oder Cursor verbunden.</sub>
+<sub>SessionHop — inoffiziell, nicht mit Patreon oder Cursor verbunden.</sub>
 
 </div>

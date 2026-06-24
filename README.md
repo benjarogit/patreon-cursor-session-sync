@@ -1,22 +1,21 @@
 <div align="center">
 
-<img src="docs/logo.png" alt="patreon-cursor-session-sync" width="160">
+<img src="docs/logo.png" alt="SessionHop" width="148">
 
-# patreon-cursor-session-sync
+# SessionHop
 
-### Patreon in Cursor — already logged in.
+### Hop your Patreon session into Cursor.
 
-Copy your session from Firefox, Chrome, Vivaldi, or Tor Browser into Cursor’s embedded browser.  
-One command. No broken Google popups.
+Copy your login from Firefox, Chrome, Vivaldi, or Tor Browser — one command, no broken Google popups.
 
-**English** · [Deutsch](README.de.md)
+<sub><code>patreon-cursor-session-sync</code> on GitHub · <strong>English</strong> · <a href="README.de.md">Deutsch</a></sub>
 
 <br>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-2d2d2d?style=for-the-badge&labelColor=F96854)](LICENSE)
-[![Linux](https://img.shields.io/badge/Linux-only-2d2d2d?style=for-the-badge&labelColor=555)]()
-[![Python](https://img.shields.io/badge/Python-3.9+-2d2d2d?style=for-the-badge&logo=python&logoColor=white&labelColor=3776AB)]()
-[![stdlib](https://img.shields.io/badge/deps-stdlib_only-2d2d2d?style=for-the-badge&labelColor=2ea043)]()
+[![License: MIT](https://img.shields.io/badge/License-MIT-0d1117?style=for-the-badge&labelColor=F96854)](LICENSE)
+[![Linux](https://img.shields.io/badge/Linux-only-0d1117?style=for-the-badge&labelColor=30363d)]()
+[![Python](https://img.shields.io/badge/Python-3.9+-0d1117?style=for-the-badge&logo=python&logoColor=white&labelColor=3776AB)]()
+[![stdlib](https://img.shields.io/badge/deps-stdlib_only-0d1117?style=for-the-badge&labelColor=238636)]()
 
 <br>
 
@@ -52,9 +51,9 @@ One command. No broken Google popups.
 </tr>
 </table>
 
-This tool **bridges the gap** — it copies your Patreon `session_id` and related cookies into Cursor.
+**SessionHop** copies your Patreon `session_id` and cookies into Cursor’s browser — you open Patreon **already logged in**.
 
-> Unofficial utility · Linux only · Patreon only · does not fix OAuth — transfers an active session.
+> Unofficial · Linux only · Patreon only · transfers sessions, does not fix OAuth.
 
 ---
 
@@ -63,22 +62,21 @@ This tool **bridges the gap** — it copies your Patreon `session_id` and relate
 ```bash
 git clone https://github.com/benjarogit/patreon-cursor-session-sync.git
 cd patreon-cursor-session-sync
-chmod +x sync-patreon-cursor-session.py
+chmod +x sessionhop.py
 
 # 1. Log into Patreon in Firefox or Chrome
-# 2. Run sync
-./sync-patreon-cursor-session.py
+# 2. Hop the session
+./sessionhop.py
 
-# 3. Open in Cursor
-# → https://www.patreon.com/home
+# 3. Open in Cursor → https://www.patreon.com/home
 ```
 
 <details>
-<summary><strong>Optional: install as <code>patreon-cursor-sync</code></strong></summary>
+<summary><strong>Install as <code>sessionhop</code> command</strong></summary>
 
 ```bash
-ln -s "$(pwd)/sync-patreon-cursor-session.py" ~/.local/bin/patreon-cursor-sync
-patreon-cursor-sync
+ln -s "$(pwd)/sessionhop.py" ~/.local/bin/sessionhop
+sessionhop
 ```
 
 </details>
@@ -89,12 +87,12 @@ patreon-cursor-sync
 
 | | |
 |:---|:---|
-| `./sync-patreon-cursor-session.py` | Auto-pick best profile |
-| `./sync-patreon-cursor-session.py --list` | Show all detected profiles |
-| `./sync-patreon-cursor-session.py --from firefox` | Firefox |
-| `./sync-patreon-cursor-session.py --from vivaldi` | Vivaldi |
-| `./sync-patreon-cursor-session.py --from tor-browser` | Tor Browser |
-| `./sync-patreon-cursor-session.py --from chrome --profile "Profile 1"` | Specific profile |
+| `./sessionhop.py` | Auto-pick best profile |
+| `./sessionhop.py --list` | Show all detected profiles |
+| `./sessionhop.py --from firefox` | Firefox |
+| `./sessionhop.py --from vivaldi` | Vivaldi |
+| `./sessionhop.py --from tor-browser` | Tor Browser |
+| `./sessionhop.py --from chrome --profile "Profile 1"` | Specific profile |
 
 Still logged out? **Developer → Reload Window**, then open Patreon again.
 
@@ -141,7 +139,7 @@ Encrypted cookies (OS keyring)? Close the source browser or use Firefox.
 
 <br>
 
-Safari (macOS, proprietary format) · Windows / macOS paths
+Safari (macOS) · Windows / macOS paths
 
 </details>
 
@@ -152,7 +150,7 @@ Safari (macOS, proprietary format) · Windows / macOS paths
 ```
    ┌─────────────┐                              ┌─────────────┐
    │  Browser    │   session_id + cookies       │   Cursor    │
-   │  (source)   │ ─────────────────────────► │   browser   │
+   │  (source)   │ ─────── SessionHop ────────► │   browser   │
    └─────────────┘   SQLite · SIGHUP reload   └─────────────┘
 ```
 
@@ -165,7 +163,7 @@ Safari (macOS, proprietary format) · Windows / macOS paths
 
 ## Limits
 
-- Session expires when Patreon logs you out — sync again  
+- Session expires when Patreon logs you out — hop again  
 - Patreon only (not Ko-fi, GitHub, …)  
 - Source DB may be locked while browser runs  
 
@@ -177,6 +175,6 @@ Safari (macOS, proprietary format) · Windows / macOS paths
 
 **[MIT License](LICENSE)** · [benjarogit](https://github.com/benjarogit)
 
-<sub>Unofficial tool — not affiliated with Patreon or Cursor.</sub>
+<sub>SessionHop — unofficial, not affiliated with Patreon or Cursor.</sub>
 
 </div>
